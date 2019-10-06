@@ -1,0 +1,250 @@
+#sidebar {
+  width: 300px;
+  height: 100vh;
+  overflow: scroll;
+  z-index: 10;
+  position: relative;
+  background: #333;
+  color: #fff;
+  font-size: 0.8em;
+  padding: 32px 16px;
+  box-sizing: border-box; }
+  #sidebar a {
+    color: #fff; }
+  #sidebar #overlay {
+    width: 100vw;
+    position: fixed;
+    left: 0;
+    top: 0;
+    height: 100vh;
+    background: #0007;
+    pointer-events: none;
+    opacity: 0;
+    transition: opacity .3s;
+    z-index: -1; }
+    @media screen and (min-width: 800px) {
+      #sidebar #overlay {
+        display: none; } }
+
+#sidemenu_toggle:checked + #wrapper #sidebar #overlay {
+  pointer-events: all;
+  opacity: 1; }
+
+header {
+  height: 32px;
+  padding: 12px;
+  background: #1a182d;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  color: #fff; }
+  header #logo {
+    margin: 0;
+    height: 32px; }
+    header #logo img {
+      display: block;
+      height: 32px;
+      width: 32px; }
+  header #menu {
+    position: relative; }
+    header #menu #status {
+      display: none; }
+    header #menu #trigger {
+      display: block;
+      width: 32px;
+      height: 32px;
+      position: relative; }
+      header #menu #trigger::before,
+      header #menu #trigger span, header #menu #trigger::after {
+        display: block;
+        content: "";
+        position: absolute;
+        width: 4px;
+        height: 4px;
+        border-radius: 2px;
+        background: #fff;
+        transition: all 0.2s;
+        left: 14px; }
+      header #menu #trigger::before {
+        transform: rotate(45deg);
+        top: 7px; }
+      header #menu #trigger span {
+        top: 15px; }
+      header #menu #trigger::after {
+        transform: rotate(-45deg);
+        top: 23px; }
+    header #menu #status:checked ~ #trigger span {
+      opacity: 0; }
+    header #menu #status:checked ~ #trigger::before {
+      top: 15px;
+      height: 2px;
+      width: 32px;
+      left: 0; }
+    header #menu #status:checked ~ #trigger::after {
+      top: 15px;
+      height: 2px;
+      width: 32px;
+      left: 0; }
+    header #menu menu {
+      margin: 0;
+      padding: 0;
+      display: flex;
+      flex-direction: column;
+      width: 200px;
+      box-shadow: 0 0 10px -5px #000;
+      position: absolute;
+      top: 44px;
+      right: 0;
+      overflow: hidden;
+      transition: all 0.2s;
+      transform-origin: top right;
+      transform: scale(0); }
+      header #menu menu a {
+        display: block;
+        height: 40px;
+        line-height: 40px;
+        width: 100%;
+        background: #fff;
+        color: #111;
+        text-decoration: none;
+        box-sizing: border-box;
+        padding: 0 16px; }
+    header #menu #status:checked ~ menu {
+      transform: scaleY(1); }
+  header #save_btn {
+    line-height: 32px;
+    height: 32px;
+    padding: 0 8px;
+    font-weight: bolder;
+    background: none;
+    border: none;
+    color: #fff;
+    display: block; }
+
+main {
+  padding: 24px 16px;
+  box-sizing: border-box;
+  width: 100%;
+  height: calc(100vh - 56px); }
+  main h1#title {
+    height: 3rem;
+    font-size: 2rem;
+    margin: 12px 0; }
+  main hr {
+    background: #ccc;
+    border: none;
+    margin: 16px 0;
+    height: 1px; }
+  main form {
+    height: calc(100% - 3rem - 44px);
+    width: 100%; }
+  main textarea {
+    height: 100%;
+    width: 100%;
+    box-sizing: border-box;
+    outline: none;
+    border: none; }
+  main .nocontent {
+    text-align: center;
+    padding: 100px 0;
+    color: #777; }
+    main .nocontent a {
+      color: #777; }
+  main #setting_form [type="checkbox"],
+  main #setting_form [type="radio"] {
+    display: none; }
+  main #setting_form label {
+    display: block;
+    padding: 8px 8px 8px 32px;
+    min-height: 32px;
+    line-height: 32px;
+    position: relative; }
+    main #setting_form label::before {
+      content: "";
+      display: block;
+      transition: all 0.2s;
+      width: 12px;
+      height: 12px;
+      border: 2px solid #777;
+      box-sizing: border-box;
+      position: absolute;
+      top: calc(50% - 6px);
+      left: 10px;
+      transform-origin: center; }
+  main #setting_form [type="checkbox"]:checked + label::before {
+    content: "";
+    display: block;
+    transition: all 0.2s;
+    width: 12px;
+    height: 8px;
+    border: none;
+    border-bottom: 0px solid #0000;
+    border-left: 0px solid #0000;
+    border-top: 2px solid #777;
+    border-right: 2px solid #777;
+    transform: rotate(140deg); }
+  main #setting_form [type="radio"]:checked + label::before {
+    content: "";
+    display: block;
+    transition: all 0.2s;
+    border: none;
+    border: 4px solid #777;
+    transform: rotate(45deg); }
+  main #setting_form #default_editor, main #setting_form #editables {
+    height: 0;
+    opacity: 0;
+    transition: opacity 0.4s;
+    overflow: hidden; }
+  main #setting_form #noneditable:checked ~ #default_editor {
+    height: auto;
+    opacity: 1; }
+  main #setting_form #controled:checked ~ #editables {
+    height: auto;
+    opacity: 1; }
+  main #setting_form #user_list, main #setting_form #team_list {
+    padding-left: 24px;
+    max-height: 240px;
+    overflow-y: scroll;
+    height: 0;
+    opacity: 0; }
+  main #setting_form #user:checked ~ #user_list,
+  main #setting_form #team:checked ~ #team_list {
+    height: auto;
+    opacity: 1; }
+  main [type="text"] {
+    height: 40px;
+    line-height: 40px;
+    border: 0;
+    border-bottom: 1px solid #aaa;
+    background: none;
+    display: block;
+    padding: 0 16px;
+    width: 100%;
+    box-sizing: border-box; }
+
+#sidemenu_toggle:checked + #wrapper {
+  margin-left: 0; }
+
+body {
+  margin: 0;
+  overflow-x: hidden; }
+  @media screen and (min-width: 800px) {
+    body {
+      width: 100%; } }
+  @media screen and (max-width: 800px) {
+    body {
+      width: 100vw; } }
+
+#wrapper {
+  transition: margin-left .3s;
+  display: grid; }
+  @media screen and (min-width: 800px) {
+    #wrapper {
+      grid-template-columns: 300px 1fr; } }
+  @media screen and (max-width: 800px) {
+    #wrapper {
+      margin-left: -300px;
+      grid-template-columns: 300px 100vw; } }
+
+#sidemenu_toggle {
+  display: none; }

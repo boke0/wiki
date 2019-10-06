@@ -1,0 +1,110 @@
+header{
+    height:32px;
+    padding:12px;
+    background:#1a182d;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    color:#fff;
+    #logo{
+        margin:0;
+        height:32px;
+        img{
+            display:block;
+            height:32px;
+            width:32px;
+        }
+    }
+    #menu{
+        position: relative;
+        #status{
+            display:none;
+        }
+        #trigger{
+            display:block;
+            width:32px;
+            height:32px;
+            position: relative;
+            &::before,
+            span,
+            &::after{
+                display:block;
+                content:"";
+                position: absolute;
+                width:4px;
+                height:4px;
+                border-radius: 2px;
+                background: #fff;
+                transition: all.2s;
+                left:14px;
+            }
+            &::before{
+                transform:rotate(45deg);
+                top:7px;
+            }
+            span{
+                top:15px;
+            }
+            &::after{
+                transform:rotate(-45deg);
+                top:23px;
+            }
+        }
+        #status:checked~#trigger{
+            span{
+                opacity: 0;
+            }
+            &::before{
+                top:15px;
+                height:2px;
+                width:32px;
+                left:0;
+            }
+            &::after{
+                top:15px;
+                height:2px;
+                width:32px;
+                left:0;
+            }
+        }
+        menu{
+            margin:0;
+            padding:0;
+            display:flex;
+            flex-direction: column;
+            width:200px;
+            box-shadow:0 0 10px -5px #000;
+            position: absolute;
+            top:44px;
+            right:0;
+            overflow: hidden;
+            transition: all.2s;
+            transform-origin: top right;
+            transform: scale(0);
+            a{
+                display:block;
+                height:40px;
+                line-height:40px;
+                width:100%;
+                background:#fff;
+                color:#111;
+                text-decoration: none;
+                box-sizing: border-box;
+                padding: 0 16px;
+            }
+        }
+        #status:checked~menu{
+            transform: scaleY(1);
+        }
+    }
+    #save_btn{
+        line-height:32px;
+        height:32px;
+        padding:0 8px;
+        font-weight:bolder;
+        background:none;
+        border:none;
+        color:#fff;
+        display:block;
+    }
+}

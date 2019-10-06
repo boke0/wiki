@@ -1,0 +1,125 @@
+main{
+    padding:24px 16px;
+    box-sizing: border-box;
+    width:100%;
+    height:calc(100vh - 56px);
+    h1#title{
+        height:3rem;
+        font-size:2rem;
+        margin:12px 0;
+    }
+    hr{
+        background:#ccc;
+        border:none;
+        margin:16px 0;
+        height:1px;
+    }
+    form{
+        height: calc(100% - 3rem - 44px);
+        width:100%;
+
+    }
+    textarea{
+        height: 100%;
+        width:100%;
+        box-sizing: border-box;
+        outline:none;
+        border:none;
+    }
+    .nocontent{
+        text-align: center;
+        padding:100px 0;
+        color:#777;
+        a{
+            color:#777;
+        }
+    }
+    #setting_form{
+        [type="checkbox"],
+        [type="radio"]{
+            display:none;
+        }
+        label{
+            display:block;
+            padding:8px 8px 8px 32px;
+            min-height:32px;
+            line-height: 32px;
+            position: relative;
+            &::before{
+                content:"";
+                display:block;
+                transition: all.2s;
+                width:12px;
+                height:12px;
+                border:2px solid #777;
+                box-sizing: border-box;
+                position: absolute;
+                top:calc(50% - 6px);
+                left:10px;
+                transform-origin: center;
+            }
+        }
+        [type="checkbox"]:checked+label{
+            &::before{
+                content:"";
+                display:block;
+                transition: all.2s;
+                width:12px;
+                height:8px;
+                border:none;
+                border-bottom:0px solid #0000;
+                border-left:0px solid #0000;
+                border-top:2px solid #777;
+                border-right:2px solid #777;
+                transform:rotate(140deg);
+            }
+        }
+        [type="radio"]:checked+label{
+            &::before{
+                content:"";
+                display:block;
+                transition: all.2s;
+                border:none;
+                border:4px solid #777;
+                transform:rotate(45deg);
+            }
+        }
+        #default_editor,#editables{
+            height:0;
+            opacity: 0;
+            transition:opacity.4s;
+            overflow: hidden;
+        }
+        #noneditable:checked~#default_editor{
+            height:auto;
+            opacity: 1;
+        }
+        #controled:checked~#editables{
+            height:auto;
+            opacity: 1;
+        }
+        #user_list,#team_list{
+            padding-left:24px;
+            max-height:240px;
+            overflow-y: scroll;
+            height:0;
+            opacity: 0;
+        }
+        #user:checked~#user_list,
+        #team:checked~#team_list{
+            height:auto;
+            opacity: 1;
+        }
+    }
+    [type="text"]{
+        height:40px;
+        line-height:40px;
+        border:0;
+        border-bottom:1px solid #aaa;
+        background:none;
+        display:block;
+        padding:0 16px;
+        width:100%;
+        box-sizing:border-box;
+    }
+}
