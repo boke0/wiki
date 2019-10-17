@@ -8,8 +8,12 @@ if($me===FALSE){
     $mtm->login();
     exit;
 }
-$title=$_GET["slug"]!="main"?urldecode($_GET["slug"]):$settings->title;
-$data=$mtm->handler("open",["slug"=>$_GET["slug"]]);
+
+$seps=explode("/",urldecode($_GET["slug"]));
+$title=$_GET["slug"]!=""?array_pop($seps):$settings->title;
+$data=$mtm->handler("open",["slug"=>$_GET["slug"]!=""?$_GET["slug"]:"main"]);
+$kz=$seps;
+
 if($data["meta"]["editor"]!=null&&$me->permission<100&&array_search($me->id,$data["meta"]["editor"]->user)&&array_count_values(array_merge($belong,$data["meta"]["editor"]->team))==0){
     header("HTTP/1.0 403 Forbidden");
     if(preg_match("/(http|https)\:\/\/{$_SERVER["HTTP_HOST"]}/",$_SERVER["HTTP_REFERER"])){
@@ -63,6 +67,17 @@ if($_SERVER["REQUEST_METHOD"]=="POST"){
         </div>
     </header>
     <main>
+<?php if(count($kz)>0):
+$str="";
+?>
+        <div class="kz">
+<?php foreach($kz as $k):
+$str.=$k;
+?>
+            <a href="<?=$str;?>"><?=$k;?></a> &gt;
+<?php endforeach;?>
+        </div>
+<?php endif;?>
         <h1 id="title"><?=$title;?></h1>
         <hr>
         <form method="POST" action="edit.php?slug=<?=$_GET["slug"];?>">
