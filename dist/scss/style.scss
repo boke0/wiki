@@ -30,12 +30,18 @@ body{
 #wrapper{
     transition: margin-left .3s;
     display: grid;
+    height:100vh;
+    #container{
+        overflow-y:scroll;
+        position:relative;
+    }
     @include pc{
         grid-template-columns: 300px 1fr;
     }
     @include sp{
         margin-left: -300px;
         grid-template-columns: 300px 100vw;
+        overflow:hidden;
     }
 }
 

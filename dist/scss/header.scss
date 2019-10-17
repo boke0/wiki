@@ -5,6 +5,8 @@ header{
     display: flex;
     flex-direction: row;
     justify-content: space-between;
+    position:sticky;
+    top:0;
     color:#fff;
     #logo{
         margin:0;

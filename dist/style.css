@@ -54,6 +54,9 @@ header {
   display: flex;
   flex-direction: row;
   justify-content: space-between;
+  position: -webkit-sticky;
+  position: sticky;
+  top: 0;
   color: #fff; }
   header #logo {
     margin: 0;
@@ -254,14 +257,19 @@ body {
 
 #wrapper {
   transition: margin-left .3s;
-  display: grid; }
+  display: grid;
+  height: 100vh; }
+  #wrapper #container {
+    overflow-y: scroll;
+    position: relative; }
   @media screen and (min-width: 800px) {
     #wrapper {
       grid-template-columns: 300px 1fr; } }
   @media screen and (max-width: 800px) {
     #wrapper {
       margin-left: -300px;
-      grid-template-columns: 300px 100vw; } }
+      grid-template-columns: 300px 100vw;
+      overflow: hidden; } }
 
 #sidemenu_toggle {
   display: none; }
