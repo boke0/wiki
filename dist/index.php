@@ -8,8 +8,10 @@ if($settings->closed&&$me===FALSE){
     $mtm->login();
     exit;
 }
-$title=$_GET["slug"]!=""?urldecode($_GET["slug"]):$settings->title;
+$seps=explode("/",urldecode($_GET["slug"]));
+$title=$_GET["slug"]!=""?array_pop($seps):$settings->title;
 $data=$mtm->handler("open",["slug"=>$_GET["slug"]!=""?$_GET["slug"]:"main"]);
+$kz=$seps;
 $sidebar=$mtm->handler("open",["slug"=>"sidebar"]);
 ?>
 <!DOCTYPE html>
@@ -19,7 +21,7 @@ $sidebar=$mtm->handler("open",["slug"=>"sidebar"]);
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <base href="<?=$mtm->appinfo["application_root"];?>">
     <link rel="stylesheet" href="style.css">
-    <title>ヰキ</title>
+    <title><?=$title?> | ヰキ</title>
     <script src="marked.min.js"></script>
 </head>
 <body>
@@ -62,6 +64,17 @@ $sidebar=$mtm->handler("open",["slug"=>"sidebar"]);
                 </div>
             </header>
             <main>
+<?php if(count($kz)>0):
+$str="";
+?>
+                <div class="kz">
+<?php foreach($kz as $k):
+$str.=$k;
+?>
+                    <a href="<?=$str;?>"><?=$k;?></a> &gt;
+<?php endforeach;?>
+                </div>
+<?php endif;?>
                 <h1 id="title"><?=$title;?></h1>
                 <hr>
 <?php if($data["content"]!=""):?>
