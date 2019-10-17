@@ -1,6 +1,6 @@
 <?php
 
-if(!file_exists($_ARG["slug"].".md")){
+if(!file_exists(urldecode($_ARG["slug"]).".md")){
     $settings=json_decode(file_get_contents("setting.json"));
     if(empty($settings->default_editor)){
         $dirs=explode("/",urldecode($_ARG["slug"]));
