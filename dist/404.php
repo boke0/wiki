@@ -16,7 +16,7 @@ switch($seps[0]){
         ];
         foreach($_GET as $k=>$v) $qd[$k]=$v;
         $qs=http_build_query($qd);
-        switch(array_pop($seps[1])){
+        switch(array_pop($seps)){
             case "edit":
                 header("Location: {$mtm->appinfo["application_root"]}edit.php?$qs");
                 break;
